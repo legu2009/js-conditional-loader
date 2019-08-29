@@ -2,25 +2,24 @@
 	"name": "js-conditional-loader",
 	"version": "1.0.0",
 	"description": "A javascript conditional compile loader for webpack.",
+	"repository": "https://github.com/legu2009/js-conditional-loader",
 	"main": "index.js",
-	"scripts": {
-	},
+	"scripts": {},
 	"dependencies": {},
 	"keywords": [
-	  "webpack",
-	  "javascript",
-	  "conditional"
+		"webpack",
+		"conditional"
 	],
 	"author": {
-	  "name": "legu2009",
-	  "email": "89415119@qq.com"
+		"name": "legu2009",
+		"email": "89415119@qq.com"
 	},
 	"license": "MIT",
 	"readme": "readme.md",
 	"devDependencies": {
-	  "loader-utils": "^1.2.3"
+		"loader-utils": "^1.2.3"
 	},
 	"publishConfig": {
-	  "registry": "https://registry.npmjs.org"
+		"registry": "https://registry.npmjs.org"
 	}
-  }
+}

@@ -9,19 +9,19 @@ This loader use ````<JS_IF condition={}></JS_IF>```` XML tag in comment;
 - Mode 1     
 ````js
 /*<JS_IF condition={env == 'op'}>*/
-	console.log('op');
+    console.log('op');
 /* </JS_IF>*/
 /*<JS_IF condition={env != 'op'}>*/
-	console.log('not op');
+    console.log('not op');
 /* </JS_IF>*/
 ````
 when loader.options.env == 'op', Output:
 ````js
-	console.log('op');
+    console.log('op');
 ````
 when loader.options.env != 'op', Output:
 ````js
-	console.log('not op');
+    console.log('not op');
 ````
 
 - Mode 2 -- Nested condition use Namesapce
@@ -29,22 +29,22 @@ when loader.options.env != 'op', Output:
 
 ````js
 /*<JS_IF:a condition={env == 'op'}>*/
-	console.log('op');
-	/*<JS_IF:b condition={sum > 10}>*/
-	console.log('sum > 10');
-	/* </JS_IF:b>*/
+    console.log('op');
+    /*<JS_IF:b condition={sum > 10}>*/
+    console.log('sum > 10');
+    /* </JS_IF:b>*/
 /* </JS_IF:a>*/
 
 ````
 
 when loader.options.env == 'op' && sum = 20, Output:
 ````js
-	console.log('op');
-	console.log('sum > 10');
+    console.log('op');
+    console.log('sum > 10');
 ````
 when loader.options.env == 'op' && sum = 10, Output:
 ````js
-	console.log('op');
+    console.log('op');
 ````
 
 ----
@@ -65,10 +65,10 @@ module: {
                 'babel-loader',
                 //step-1
                 {
-					loader: 'js-conditional-loader',
-					options: {
-						env: process.env.NODE_ENV
-					}
+                    loader: 'js-conditional-loader',
+                    options: {
+                        env: process.env.NODE_ENV
+                    }
                 },
             ]
         }
