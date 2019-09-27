@@ -10,10 +10,10 @@ This loader use ````<JS_IF condition={}></JS_IF>```` XML tag in comment;
 ````js
 /*<JS_IF condition={env == 'op'}>*/
     console.log('op');
-/* </JS_IF>*/
+/*</JS_IF>*/
 /*<JS_IF condition={env != 'op'}>*/
     console.log('not op');
-/* </JS_IF>*/
+/*</JS_IF>*/
 ````
 when loader.options.env == 'op', Output:
 ````js
@@ -24,6 +24,17 @@ when loader.options.env != 'op', Output:
     console.log('not op');
 ````
 
+OR use ````<JS_ELSE>````
+
+````js
+/*<JS_IF:a condition={env == 'op'}>*/
+    console.log('op');
+/*<JS_ELSE>*/
+    console.log('not op');
+/*</JS_IF:a>*/
+
+````
+
 - Mode 2 -- Nested condition use Namesapce
 
 
@@ -32,19 +43,34 @@ when loader.options.env != 'op', Output:
     console.log('op');
     /*<JS_IF:b condition={sum > 10}>*/
     console.log('sum > 10');
-    /* </JS_IF:b>*/
-/* </JS_IF:a>*/
+    /*</JS_IF:b>*/
+/*</JS_IF:a>*/
 
 ````
 
-when loader.options.env == 'op' && sum = 20, Output:
+when loader.options.env == 'op' && loader.options.sum = 20, Output:
 ````js
     console.log('op');
     console.log('sum > 10');
 ````
-when loader.options.env == 'op' && sum = 10, Output:
+when loader.options.env == 'op' && loader.options.sum = 10, Output:
 ````js
     console.log('op');
+````
+
+- Mode 3 -- JS_ELSE also has Namesapce
+````js
+/*<JS_IF:a condition={env == 'op'}>*/
+    console.log('op');
+    /*<JS_IF:b condition={sum > 10}>*/
+	console.log('sum > 10');
+	/*<JS_ELSE:b>*/
+	console.log('sum <= 10');
+	/* </JS_IF:b>*/
+/*<JS_ELSE:a>*/
+	console.log('not op');
+/*</JS_IF:a>*/
+
 ````
 
 ----
@@ -59,7 +85,7 @@ when loader.options.env == 'op' && sum = 10, Output:
 module: {
     rules: [
         {
-            test: /\.jsx$/,
+            test: /\.jsx?$/,
             use: [
                 //step-2
                 'babel-loader',
